@@ -1,15 +1,13 @@
 import { useState } from "react";
-import { AddCategory } from "./components/AddCategory";
+import { AddCategory, GifGrid } from "./components";
 
 export const GitExpertApp = () => {
 
 	const [categories, setCategories] = useState(['Dragon Ball']);
 
 	const onAddCategory = (newCategory) => {
-
 		// si ya existe la categoria anteriormente, no agregar
 		if(categories.includes(newCategory)) return;
-
 		setCategories([newCategory, ...categories]);
 	}
 
@@ -21,11 +19,14 @@ export const GitExpertApp = () => {
 				onNewCategory = {value => onAddCategory(value)}
 			/>
 			
-			<ol>
-				{categories.map(category => {
-					return <li key={category}>{category}</li>
-				})}
-			</ol>
+			{
+				categories.map(category => (
+				<GifGrid 
+					key={category} 
+					category={category} 
+				/>
+			))
+		}
 		
 		</>
 	)
